@@ -2,6 +2,9 @@ import bcrypt from "bcryptjs";
 
 const Users = (sequelize, DataTypes) => {
   const Users = sequelize.define("users", {
+    name: {
+      type: DataTypes.STRING(),
+    },
     email: {
       type: DataTypes.STRING(100),
     },
