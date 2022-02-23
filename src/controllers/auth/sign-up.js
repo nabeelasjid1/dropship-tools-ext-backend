@@ -12,7 +12,9 @@ const SignUp = async (req, res) => {
 
     let user = await DB.users.findOne({ where: { email } });
     if (user) {
-      return res.status(400).json("email already exist");
+      return res
+        .status(400)
+        .json({ success: false, message: "email already exist" });
     }
     const userPassword = bcrypt.hashSync(password, 10);
     user = await DB.users.create({
@@ -23,6 +25,7 @@ const SignUp = async (req, res) => {
     const result = await user.save();
     const token = generateTokenResponse(result);
     return res.status(200).json({
+      success: true,
       token,
       user: result,
     });
