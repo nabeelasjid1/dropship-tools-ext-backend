@@ -5,10 +5,10 @@ import { Strategy as JWTstrategy, ExtractJwt } from 'passport-jwt';
 import DB from '../database';
 const { JWT_SECRET } = process.env;
 
-export const generateTokenResponse = ({ id, email, name }, verify = false) => {
+export const generateTokenResponse = ({ id, email }, verify = false) => {
   let expiryTime = '365d';
   return {
-    token: jwt.sign({ id, email, name }, JWT_SECRET, {
+    token: jwt.sign({ id, email }, JWT_SECRET, {
       expiresIn: expiryTime
     }),
     userId: id
