@@ -30,7 +30,7 @@ const SignUp = async (req, res) => {
       user: result,
     });
   } catch (err) {
-    return res.status(500).json(err.message);
+    return res.status(500).json({ message: err.message, success: false });
   }
 };
 export default SignUp;
