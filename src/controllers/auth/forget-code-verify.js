@@ -1,29 +1,33 @@
+import bcrypt from "bcryptjs";
 import _ from "lodash";
-import Users from "../../models/users";
-import AuthCodes from "../../models/authCodes";
+import DB from "../../database";
 import { generateTokenResponse } from "../../middlewares/auth";
 
 const ForgetCodeVerify = async (req, res) => {
   try {
     const {
-      body: { email, token },
+      body: { email, code, password },
     } = req;
-    const user = await Users.findOne({ email });
+    const user = await DB.users.findOne({ where: { email } });
     if (!user) {
-      return res.status(400).json("email not found");
+      return res
+        .status(400)
+        .json({ success: false, message: "email not found" });
     }
-    const code = await AuthCodes.findOne({ user: user._id, token });
-    if (code) {
-      await AuthCodes.updateMany({ user: user._id }, { isActive: false });
-      await Users.updateOne({ email }, { isActive: true });
+    const userCode = await DB.authCodes.findOne({ where: { userId: user.id, code } });
+    if (userCode) {
+      await DB.authCodes.destroy({ where: { userId: user.id } });
+      const userPassword = bcrypt.hashSync(password, 10);
+      await DB.users.update({ password: userPassword }, { where: { email } });
       const token = generateTokenResponse(user);
       return res.status(200).json({
+        success: true,
         token,
         user,
       });
     }
   } catch (err) {
-    return res.status(500).json(err.message);
+    return res.status(500).json({ message: err.message, success: false });
   }
 };
 export default ForgetCodeVerify;

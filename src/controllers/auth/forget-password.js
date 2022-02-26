@@ -17,18 +17,18 @@ const ForgetPassword = async (req, res) => {
     const code = random(100000, 999999);
     await DB.authCodes.destroy({ where: { userId: user.id } });
     await DB.authCodes.create({ userId: user.id, code });
-    await sendEmail(
-      user.email,
-      user.name,
-      "Password Recovery",
-      forgetPasswordTemplated(user.name, code)
-    );
+    // const messageResponse = await sendVerificationSMS(phone, token);
+    await sendEmail({
+      email: user.email,
+      subject: "Password Recovery",
+      bodyPart: forgetPasswordTemplated(user.name, code),
+    });
     return res.status(200).json({
       success: true,
       message: "email sent successfully",
     });
   } catch (err) {
-    return res.status(500).json(err.message);
+    return res.status(500).json({ message: err.message, success: false });
   }
 };
 export default ForgetPassword;

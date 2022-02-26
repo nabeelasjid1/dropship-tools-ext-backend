@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import LocalStrategy from 'passport-local';
 import { Strategy as JWTstrategy, ExtractJwt } from 'passport-jwt';
 import DB from '../database';
+// import Twilio from "../config/twilio";
 const { JWT_SECRET } = process.env;
 
 export const generateTokenResponse = ({ id, email }, verify = false) => {
@@ -14,6 +15,20 @@ export const generateTokenResponse = ({ id, email }, verify = false) => {
     userId: id
   };
 };
+
+// export const sendVerificationSMS = async (to, code) => {
+//   try {
+//     const res = await Twilio.messages.create({
+//       from: TWILIO_NUMBER,
+//       to,
+//       body: code,
+//     });
+//     return res;
+//   } catch (error) {
+//     console.log("error in twillio", error);
+//     return false;
+//   }
+// };
 
 export const authenticateAuthToken = passport.authenticate('jwt', {
   session: false

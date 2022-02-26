@@ -4,6 +4,7 @@ import {
   SignIn,
   SignUp,
   ForgetPassword,
+  ForgetCodeVerify,
   ResetPassword
 } from '../controllers/auth';
 import { authenticateAuthToken } from '../middlewares/auth';
@@ -22,5 +23,6 @@ const loginCheck = (req, res, next) => {
 router.post('/signin', loginCheck, SignIn);
 router.post('/signup', SignUp);
 router.post('/forgetpassword', ForgetPassword);
-router.put('/resetpassword', authenticateAuthToken, ResetPassword);
+router.post('/resetpassword', ForgetCodeVerify);
+router.put('/changepassword', authenticateAuthToken, ResetPassword);
 export default router;

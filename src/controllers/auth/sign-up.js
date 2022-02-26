@@ -16,6 +16,7 @@ const SignUp = async (req, res) => {
         .status(400)
         .json({ success: false, message: "email already exist" });
     }
+    // const messageResponse = await sendVerificationSMS(phone, token);
     const userPassword = bcrypt.hashSync(password, 10);
     user = await DB.users.create({
       name,
