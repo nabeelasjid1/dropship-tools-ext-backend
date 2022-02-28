@@ -17,7 +17,7 @@ export const ResetPassword = async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    return res.status(500).json(err.message);
+    return res.status(500).json({ message: err.message, success: false });
   }
 };
 export default ResetPassword;

@@ -20,9 +20,9 @@ const loginCheck = (req, res, next) => {
   })(req, res, next);
 }
 
-router.post('/signin', loginCheck, SignIn);
-router.post('/signup', SignUp);
-router.post('/forgetpassword', ForgetPassword);
-router.post('/resetpassword', ForgetCodeVerify);
-router.put('/changepassword', authenticateAuthToken, ResetPassword);
+router.post('/sign-in', loginCheck, SignIn);
+router.post('/sign-up', SignUp);
+router.post('/forget-password', ForgetPassword);
+router.post('/reset-password', ForgetCodeVerify);
+router.put('/change-password', authenticateAuthToken, ResetPassword);
 export default router;
