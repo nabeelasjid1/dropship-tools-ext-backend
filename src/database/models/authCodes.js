@@ -15,6 +15,9 @@ const AuthCodes = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
     },
   });
+  AuthCodes.associate = function (models) {
+    AuthCodes.belongsTo(models.users);
+  };
   return AuthCodes;
 };
 
