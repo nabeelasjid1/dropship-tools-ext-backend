@@ -15,6 +15,9 @@ const Users = (sequelize, DataTypes) => {
   Users.prototype.validatePassword = function (candidatePassword) {
     return bcrypt.compareSync(candidatePassword, this.password);
   };
+  Users.associate = function (models) {
+    Users.hasMany(models.authCodes);
+  };
   return Users;
 };
 
