@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
+    "heroku-postbuild": "webpack -p --config webpack.babel.js --port $PORT --host 0.0.0.0 --progress",
     "stage:setup": "mup setup --config=./deploy/mup.staging.js",
     "stage:deploy": "npm run stage:build && mup deploy --config=./deploy/mup.staging.js",
     "stage:reconfig": "mup reconfig --config=./deploy/mup.staging.js",
