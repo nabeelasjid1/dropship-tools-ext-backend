@@ -1,25 +1,17 @@
-const Catalogs = (sequelize, DataTypes) => {
-  const Catalogs = sequelize.define("catalogs", {
+const Schema = (sequelize, DataTypes) => {
+  const Schema = sequelize.define("catalogs", {
     asin: {
       type: DataTypes.STRING(),
     },
     upc: {
       type: DataTypes.STRING(),
     },
-    ean: {
-      type: DataTypes.STRING(),
-    },
-    gtin: {
-      type: DataTypes.STRING(),
-    },
-    walmartLink: {
-      type: DataTypes.STRING(),
-    },
-    ebayLink: {
-      type: DataTypes.STRING(),
-    },
   });
-  return Catalogs;
+  Schema.associate = function (models) {
+    Schema.hasMany(models.indentifiers);
+    Schema.hasMany(models.links);
+  };
+  return Schema;
 };
 
-export default Catalogs;
+export default Schema;

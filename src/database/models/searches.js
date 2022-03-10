@@ -1,13 +1,13 @@
-const Searches = (sequelize, DataTypes) => {
-  const Searches = sequelize.define("searches", {
+const Schema = (sequelize, DataTypes) => {
+  const Schema = sequelize.define("searches", {
     marketplace: {
       type: DataTypes.STRING(),
     },
     searchLink: {
-      type: DataTypes.STRING(),
+      type: DataTypes.STRING(10000),
     },
   });
-  return Searches;
+  return Schema;
 };
 
-export default Searches;
+export default Schema;

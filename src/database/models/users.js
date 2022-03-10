@@ -1,10 +1,7 @@
 import bcrypt from "bcryptjs";
 
-const Users = (sequelize, DataTypes) => {
-  const Users = sequelize.define("users", {
-    name: {
-      type: DataTypes.STRING(),
-    },
+const Schema = (sequelize, DataTypes) => {
+  const Schema = sequelize.define("users", {
     email: {
       type: DataTypes.STRING(100),
     },
@@ -12,13 +9,10 @@ const Users = (sequelize, DataTypes) => {
       type: DataTypes.STRING(),
     },
   });
-  Users.prototype.validatePassword = function (candidatePassword) {
+  Schema.prototype.validatePassword = function (candidatePassword) {
     return bcrypt.compareSync(candidatePassword, this.password);
   };
-  Users.associate = function (models) {
-    Users.hasMany(models.authCodes);
-  };
-  return Users;
+  return Schema;
 };
 
-export default Users;
+export default Schema;
