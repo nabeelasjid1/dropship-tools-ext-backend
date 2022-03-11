@@ -1,7 +1,7 @@
 import users from "./users";
 import catalogs from "./catalogs";
-import indentifiers from "./indentifiers";
+import identifiers from "./identifiers";
 import searches from "./searches";
 import links from "./links";
 
-export { catalogs, indentifiers, searches, users, links };
+export { catalogs, identifiers, searches, users, links };

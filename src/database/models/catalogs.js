@@ -12,7 +12,7 @@ const Schema = (sequelize, DataTypes) => {
     },
   });
   Schema.associate = function (models) {
-    Schema.hasMany(models.indentifiers);
+    Schema.hasMany(models.identifiers);
     Schema.hasMany(models.links);
   };
   return Schema;

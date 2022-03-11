@@ -1,5 +1,5 @@
 const Schema = (sequelize, DataTypes) => {
-  const Schema = sequelize.define("indentifiers", {
+  const Schema = sequelize.define("identifiers", {
     catalogId: {
       type: DataTypes.INTEGER,
       allowNull: true,
