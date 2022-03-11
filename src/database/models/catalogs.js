@@ -6,6 +6,10 @@ const Schema = (sequelize, DataTypes) => {
     upc: {
       type: DataTypes.STRING(),
     },
+    isSync: {
+      type: DataTypes.BOOLEAN,
+      default: false,
+    },
   });
   Schema.associate = function (models) {
     Schema.hasMany(models.indentifiers);
