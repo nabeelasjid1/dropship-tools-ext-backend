@@ -1,9 +1,9 @@
 const Schema = (sequelize, DataTypes) => {
   const Schema = sequelize.define("catalogs", {
-    asin: {
+    identifierType: {
       type: DataTypes.STRING(),
     },
-    upc: {
+    identifier: {
       type: DataTypes.STRING(),
     },
     isSync: {
