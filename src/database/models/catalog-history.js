@@ -1,5 +1,5 @@
 const Schema = (sequelize, DataTypes) => {
-  const Schema = sequelize.define("links", {
+  const Schema = sequelize.define("catalogHistory", {
     catalogId: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -14,8 +14,20 @@ const Schema = (sequelize, DataTypes) => {
     marketplace: {
       type: DataTypes.STRING(),
     },
-    linkId: {
-      type: DataTypes.STRING(10000),
+    productRank: {
+      type: DataTypes.INTEGER,
+    },
+    price: {
+      type: DataTypes.DOUBLE,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+    },
+    bundleQuantity: {
+      type: DataTypes.INTEGER,
+    },
+    syncedAt: {
+      type: DataTypes.DATE,
     },
   });
   Schema.associate = function (models) {

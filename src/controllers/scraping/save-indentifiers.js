@@ -4,9 +4,9 @@ export const saveIdentifiers = async (req, res) => {
   try {
     const { data, type } = req.body;
     for (let i = 0; i < data.length; i++) {
-      const item = await DB.catalogs.findOne({ where: { [type]: data[i] } });
+      const item = await DB.catalogs.findOne({ where: { identifierType: "asin", identifier: data[i] } });
       if (!item) {
-        await DB.catalogs.create({ [type]: data[i] });
+        await DB.catalogs.create({ identifierType: "asin", identifier: data[i] });
       }
     }
     return res.status(200).json({
