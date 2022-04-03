@@ -7,13 +7,8 @@ const sequelize = new Sequelize(MYDB.DB_NAME, MYDB.DB_USERNAME, MYDB.DB_PASSWORD
   host: MYDB.DB_HOST,
   dialect: MYDB.DB_DIALECT,
   port: MYDB.DB_PORT,
-  ssl: true,
   dialectOptions: {
     connectTimeout: 50000,
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
   },
   pool: {
     max: 150,
