@@ -1,12 +1,12 @@
 import DB from "../../database";
 
-export const saveIdentifiers = async (req, res) => {
+export const importIdentifiers = async (req, res) => {
   try {
     const { data, type } = req.body;
     for (let i = 0; i < data.length; i++) {
-      const item = await DB.catalogs.findOne({ where: { identifierType: type, identifier: data[i] } });
+      const item = await DB.catalogs.findOne({ where: { identifierType: type, identifier: data[i].identifier } });
       if (!item) {
-        await DB.catalogs.create({ identifierType: type, identifier: data[i] });
+        await DB.catalogs.create({ identifierType: type, identifier: data[i].identifier });
       }
     }
     return res.status(200).json({
@@ -18,4 +18,4 @@ export const saveIdentifiers = async (req, res) => {
   }
 };
 
-export default saveIdentifiers;
+export default importIdentifiers;
